@@ -1,10 +1,10 @@
 extends Node2D
-var initial_speed = 100
+var initial_speed = 300
 var canvas
 var WHITE = Color(1,1,1)
 var steps = 1000
 var g = 9.8
-var time_step = 0.1
+var time_step = 1
 var ballObj = load("res://objects/ball.tscn")
 var velocity
 
@@ -16,8 +16,7 @@ func _input(event):
 	if Input.is_action_pressed("fire"):
 		var ball = ballObj.instance()
 		ball.position = $gun.position
-		ball.apply_impulse(Vector2(), velocity * 3.6)
-#		ball.set_applied_force(velocity * 3.6)
+		ball.apply_impulse(Vector2(0,0), velocity)
 		add_child(ball)
 
 func _physics_process(delta):
@@ -37,12 +36,11 @@ func _physics_process(delta):
 	var end = start + vec * initial_speed
 	canvas.lines.append([start, end, WHITE])
 	velocity = vec * initial_speed
-#	var angle = $gun.rotation - PI#atan2(velocity.x, velocity.y)
 	var time = 0
 	start = Vector2()
 	for i in range(steps):
-		var x = velocity.length() * time * -velocity.normalized().x#cos(angle)
-		var y = velocity.length() * time * -velocity.normalized().y - 0.5 * g * time*time #sin(angle) - 0.5 * g * time*time
+		var x = (velocity.length() * time * -velocity.normalized().x) * 0.1 
+		var y = (velocity.length() * time * -velocity.normalized().y - 0.5 * g * time*time) * 0.1 
 		time += time_step
 		var pos = Vector2(-x,-y)
 		canvas.lines.append([start + $gun.position, pos + $gun.position, WHITE])
