@@ -99,7 +99,7 @@ rect_pivot_offset = Vector2( 0, 0 )
 mouse_filter = 2
 size_flags_horizontal = 1
 size_flags_vertical = 4
-text = "linier_damp = 0"
+text = "linear_damp"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
