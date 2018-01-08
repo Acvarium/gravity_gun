@@ -16,6 +16,7 @@ func _physics_process(delta):
 	var y_text = 'y_speed = ' + str(y)
 	main_node.get_node("ball_y_speed").text = str(y_text)
 	pos = position
+	
 	x_speed = x
 func _on_Timer_timeout():
 	queue_free()
